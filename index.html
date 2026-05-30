@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphic Dimension | Gráfica, Papelaria & Find My Job</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos Gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Menu de Navegação */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0056b3;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.3s;
+            padding: 5px 10px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #0056b3;
+        }
+
+        .btn-nav {
+            background-color: #28a745;
+            color: white !important;
+            padding: 8px 15px !important;
+            border-radius: 5px;
+        }
+
+        .btn-nav:hover {
+            background-color: #218838 !important;
+        }
+
+        /* Banner Principal (Igual à Imagem Enviada) */
+        .hero {
+            background: linear-gradient(135deg, #0056b3 0%, #002244 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero p {
+            font-size: 19px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .btn-primary {
+            background-color: #ffc107;
+            color: #212529;
+            padding: 14px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+            margin: 5px;
+            display: inline-block;
+            transition: background 0.3s, transform 0.2s;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #e0a800;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: #28a745;
+            color: white;
+            padding: 14px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+            margin: 5px;
+            display: inline-block;
+            transition: background 0.3s, transform 0.2s;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        /* Controle de Visibilidade das Secções Abaixo do Banner */
+        .tab-content {
+            display: none; 
+            padding: 60px 0;
+        }
+
+        .tab-content.active-tab {
+            display: block; 
+        }
+
+        /* Títulos das Secções */
+        section h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: #222;
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            width: 60px;
+            height: 3px;
+            background-color: #0056b3;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Grelha de Serviços Gráficos */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: #0056b3;
+        }
+
+        /* Secção Portfólio */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .portfolio-item {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .portfolio-img-placeholder {
+            width: 100%;
+            height: 220px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .portfolio-info {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .portfolio-info h4 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .portfolio-info p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* Secção Find My Job */
+        .fmj-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+        }
+
+        .fmj-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .fmj-card {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 8px;
+            border-top: 5px solid #28a745;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .price {
+            font-size: 36px;
+            font-weight: bold;
+            color: #28a745;
+            margin: 20px 0;
+        }
+
+        /* Formulário */
+        .fmj-form {
+            background: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .btn-submit {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #218838;
+        }
+
+        /* Botão Flutuante do WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #fff;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            color: #fff;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+
+        footer .social-links {
+            margin-top: 15px;
+            font-size: 24px;
+        }
+
+        footer .social-links a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        footer .social-links a:hover {
+            color: #3b5998;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            nav { flex-direction: column; gap: 15px; }
+            .nav-links { flex-direction: column; align-items: center; gap: 10px; }
+            .hero h1 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="https://wa.me/258865876836?text=Olá!%20Gostaria%20de%20falar%20com%20um%20profissional%20da%20Graphic%20Dimension." class="whatsapp-float" target="_blank" title="Falar com um Profissional">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <header>
+        <div class="container">
+         <nav>
+    <div class="logo">Graphic Dimension</div>
+    <!-- Voltamos a usar a classe "nav-links" que está no seu CSS -->
+    <ul class="nav-links">
+        <li><a href="#" id="link-inicio" onclick="switchTab('inicio')">Início</a></li>
+        <li><a href="#" id="link-servicos" onclick="switchTab('servicos')">Serviços Gráficos</a></li>
+        <li><a href="#" id="link-sobre" onclick="switchTab('sobre')">Sobre Nós</a></li>
+        <li><a href="#" id="link-portfolio" onclick="switchTab('portfolio')">Portfólio</a></li>
+        <!-- O Find My Job mantém o estilo especial de botão verde -->
+        <li><a href="#" id="link-find-my-job" onclick="switchTab('find-my-job')" style="color: #28a745; background-color: white; border: 2px solid #28a745; padding: 8px 18px; border-radius: 25px; text-decoration: none; font-weight: bold;">Find My Job</a></li>
+    </ul>
+</nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="container">
+            <h1>Impressão de Alta Qualidade & Serviços Digitais</h1>
+            <p>Sua marca em destaque com os melhores serviços gráficos de Maputo e Matola.</p>
+            <button class="btn-primary" onclick="switchTab('servicos')">Nossos Serviços</button>
+            <button class="btn-secondary" onclick="switchTab('find-my-job')">Criar Currículo</button>
+        </div>
+    </div>
+
+    <div id="conteudo-principal"></div>
+
+    <section id="tab-find-my-job" class="tab-content active-tab container">
+        <h2>Find My Job</h2>
+        <div class="fmj-intro">
+            <p>Criamos e editamos documentos profissionais seguindo rigorosamente os padrões institucionais nacionais.</p>
+            <p style="margin-top: 10px; font-weight: bold; color: #0056b3;">Documentos em Destaque: Currículo, Requerimento Oficial, Carta de Apresentação e Declaração de Compromisso de Honra.</p>
+        </div>
+
+        <div class="fmj-options">
+            <div class="fmj-card">
+                <h3>Currículo Normal</h3>
+                <p>Ideal para primeiro emprego ou candidaturas rápidas.</p>
+                <div class="price">75 MT</div>
+                <p>Estrutura limpa, direta e organizada</p>
+            </div>
+            <div class="fmj-card" style="border-top-color: #0056b3;">
+                <h3>Currículo Profissional</h3>
+                <p>Design moderno otimizado para destacar o seu perfil e habilidades técnicas.</p>
+                <div class="price">150 MT</div>
+                <p>Layout premium adaptado ao mercado atual</p>
+            </div>
+        </div>
+
+        <div class="fmj-form">
+            <h3 style="text-align: center; margin-bottom: 25px;">Faça o seu Pedido</h3>
+            <form id="form-pedido-whatsapp">
+                <div class="form-group">
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text" id="nome" required placeholder="Ex: João Alberto">
+                </div>
+
+                <div class="form-group">
+                    <label for="servico-select">Serviço Pretendido:</label>
+                    <select id="servico-select" required>
+                        <option value="">Selecione uma opção...</option>
+                        <option value="Currículo Normal (75 MT)">Currículo Normal (75 MT)</option>
+                        <option value="Currículo Profissional (150 MT)">Currículo Profissional (150 MT)</option>
+                        <option value="Requerimento Oficial">Requerimento Oficial</option>
+                        <option value="Carta de Apresentação">Carta de Apresentação</option>
+                        <option value="Declaração de Compromisso de Honra">Declaração de Compromisso de Honra</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="tipo-pedido">Tipo de Solicitação:</label>
+                    <select id="tipo-pedido" required>
+                        <option value="Criar um Novo do Zero">Pedir para fazer um novo (Baseado em modelo)</option>
+                        <option value="Editar/Atualizar Existente">Enviar para Editar / Atualizar</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="documentos">Carregar Documentos (BI, CV anterior):</label>
+                    <input type="file" id="documentos" multiple>
+                    <small style="color: #666; display: block; margin-top: 5px;">Nota: Pode anexar os ficheiros diretamente na conversa do WhatsApp a seguir.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="notas">Instruções adicionais ou alterações:</label>
+                    <textarea id="notas" rows="4" placeholder="Escreva aqui detalhes sobre o modelo ou alterações que deseja..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Enviar Solicitação via WhatsApp</button>
+            </form>
+        </div>
+    </section>
+
+<!-- ABA NOVA: SOBRE NÓS -->
+    <section id="tab-sobre" class="tab-content container" style="padding: 40px 20px; line-height: 1.8; color: #444;">
+        <div style="max-width: 800px; margin: 0 auto; text-align: left;">
+            <h2 style="font-size: 32px; text-align: center; color: #222; margin-bottom: 20px;">Sobre Nós</h2>
+            <p style="font-size: 16px; margin-bottom: 20px; text-align: justify;">
+                A <strong>Graphic Dimension</strong> é uma empresa moçambicana especializada em serviços de design gráfico, comunicação visual e serviços tecnológicos. Fundada com o objetivo de transformar ideias em soluções criativas que geram impacto visual e fortalecem a identidade de marcas.
+            </p>
+            <p style="font-size: 16px; margin-bottom: 40px; text-align: justify;">
+                Localizada em Maputo, a Graphic Dimension atende clientes de diversos segmentos, desde pedidos pessoais, pequenos empreendedores a empresas consolidadas, oferecendo desde criação de identidade visual até gestão de redes sociais e suporte tecnológico.
+            </p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px;">
+                <div style="background: #f9f9f9; padding: 25px; border-left: 4px solid #0056b3; border-radius: 4px;">
+                    <h3 style="margin-top: 0; color: #0056b3;"><i class="fas fa-bullseye"></i> Missão</h3>
+                    <p style="font-size: 15px; margin-bottom: 0;">Transformar ideias em realidade visual, oferecendo soluções gráficas inovadoras e acessíveis que potencializam a comunicação e o crescimento dos nossos clientes através de design de excelência e atendimento personalizado.</p>
+                </div>
+                
+                <div style="background: #f9f9f9; padding: 25px; border-left: 4px solid #28a745; border-radius: 4px;">
+                    <h3 style="margin-top: 0; color: #28a745;"><i class="fas fa-eye"></i> Visão</h3>
+                    <p style="font-size: 15px; margin-bottom: 0;">Ser reconhecida como uma referência em design gráfico e comunicação visual em Maputo e em África expandindo nossa atuação para outras províncias de Moçambique e consolidando parcerias estratégicas com empresas nacionais e internacionais.</p>
+                </div>
+            </div>
+
+            <div style="background: #f1f5f9; padding: 30px; border-radius: 8px;">
+                <h3 style="margin-top: 0; text-align: center; color: #333; margin-bottom: 20px;"><i class="fas fa-star"></i> Nossos Valores</h3>
+                <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 15px;">
+                    <li><strong>• Criatividade:</strong> Cada projeto é único e merece uma solução original.</li>
+                    <li><strong>• Excelência:</strong> Compromisso com qualidade em cada entrega.</li>
+                    <li><strong>• Agilidade:</strong> Respeito aos prazos sem comprometer a qualidade.</li>
+                    <li><strong>• Transparência:</strong> Comunicação clara sobre processos e valores.</li>
+                    <li><strong>• Inovação:</strong> Atualização constante com tendências e tecnologias.</li>
+                    <li><strong>• Parceria:</strong> Relacionamento de longo prazo com nossos clientes.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABA 2: TAB SERVIÇOS GRÁFICOS -->
+    <section id="tab-servicos" class="tab-content container">
+        <h2>Serviços Gráficos & Papelaria</h2>
+        <p style="text-align: center; margin-bottom: 30px; color: #666;">Clique no serviço desejado para solicitar um orçamento direto via WhatsApp.</p>
+        
+        <div class="services-grid">
+            <!-- Logotipos -->
+            <div class="service-card" style="cursor: pointer;" onclick="enviarOrcamento('Logotipos')">
+                <h3>Logotipos</h3>
+                <p>Criação de identidade visual moderna, minimalista e profissional para o seu negócio.</p>
+                <span style="color: #28a745; font-weight: bold; display: block; margin-top: 15px;"><i class="fab fa-whatsapp"></i> Pedir Orçamento</span>
+            </div>
+
+            <!-- Cartões de Visita -->
+            <div class="service-card" style="cursor: pointer;" onclick="enviarOrcamento('Cartões de Visita')">
+                <h3>Cartões de Visita</h3>
+                <p>Impressão e design de cartões sofisticados para causar uma excelente primeira impressão.</p>
+                <span style="color: #28a745; font-weight: bold; display: block; margin-top: 15px;"><i class="fab fa-whatsapp"></i> Pedir Orçamento</span>
+            </div>
+
+            <!-- Crachás -->
+            <div class="service-card" style="cursor: pointer;" onclick="enviarOrcamento('Crachás')">
+                <h3>Crachás</h3>
+                <p>Identificação corporativa e estudantil com acabamento durável e profissional.</p>
+                <span style="color: #28a745; font-weight: bold; display: block; margin-top: 15px;"><i class="fab fa-whatsapp"></i> Pedir Orçamento</span>
+            </div>
+
+            <!-- Menu -->
+            <div class="service-card" style="cursor: pointer;" onclick="enviarOrcamento('Menu')">
+                <h3>Menus</h3>
+                <p>Design e produção de ementas atraentes e organizadas para restaurantes, cafés e eventos.</p>
+                <span style="color: #28a745; font-weight: bold; display: block; margin-top: 15px;"><i class="fab fa-whatsapp"></i> Pedir Orçamento</span>
+            </div>
+
+            <!-- Panfletos / Flyers -->
+            <div class="service-card" style="cursor: pointer;" onclick="enviarOrcamento('Panfletos / Flyers')">
+                <h3>Panfletos / Flyers</h3>
+                <p>Divulgação em massa com panfletos criativos e de alta qualidade para promover o seu negócio.</p>
+                <span style="color: #28a745; font-weight: bold; display: block; margin-top: 15px;"><i class="fab fa-whatsapp"></i> Pedir Orçamento</span>
+            </div>
+
+            <!-- Stickers / Autocolantes -->
+            <div class="service-card" style="cursor: pointer;" onclick="enviarOrcamento('Stickers / Autocolantes')">
+                <h3>Stickers / Autocolantes</h3>
+                <p>Autocolantes personalizados em pequenos formatos para brindes, marcas ou fecho de embalagens.</p>
+                <span style="color: #28a745; font-weight: bold; display: block; margin-top: 15px;"><i class="fab fa-whatsapp"></i> Pedir Orçamento</span>
+            </div>
+
+            <!-- Banners & Lonas -->
+            <div class="service-card" style="cursor: pointer;" onclick="enviarOrcamento('Banners & Lonas')">
+                <h3>Banners & Lonas</h3>
+                <p>Formatos grandes para eventos, lojas e publicidade de alto impacto visual.</p>
+                <span style="color: #28a745; font-weight: bold; display: block; margin-top: 15px;"><i class="fab fa-whatsapp"></i> Pedir Orçamento</span>
+            </div>
+
+            <!-- Vinil -->
+            <div class="service-card" style="cursor: pointer;" onclick="enviarOrcamento('Vinil (Autocolantes)')">
+                <h3>Vinil (Autocolantes)</h3>
+                <p>Cortes personalizados para decoração de montras, viaturas ou rótulos de produtos.</p>
+                <span style="color: #28a745; font-weight: bold; display: block; margin-top: 15px;"><i class="fab fa-whatsapp"></i> Pedir Orçamento</span>
+            </div>
+
+            <!-- Estampagem & Bordado -->
+            <div class="service-card" style="cursor: pointer;" onclick="enviarOrcamento('Estampagem & Bordado')">
+                <h3>Estampagem & Bordado</h3>
+                <p>Personalização de capulanas, t-shirts, fardamentos e bonés com alta precisão.</p>
+                <span style="color: #28a745; font-weight: bold; display: block; margin-top: 15px;"><i class="fab fa-whatsapp"></i> Pedir Orçamento</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="tab-portfolio" class="tab-content container">
+        <h2>Nosso Portfólio</h2>
+        <p style="text-align: center; margin-bottom: 30px; color: #666;">Aprecie alguns dos projetos e serviços já prestados pela Graphic Dimension.</p>
+        
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div class="portfolio-img-placeholder"><i class="fa-solid fa-pen-nib fa-2x"></i><br><br>[Imagem: Identidade Visual / Logótipo]</div>
+                <div class="portfolio-info">
+                    <h4>Logótipo Corporativo</h4>
+                    <p>Design Minimalista & Moderno</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-img-placeholder"><i class="fa-solid fa-address-card fa-2x"></i><br><br>[Imagem: Cartões de Visita Impressos]</div>
+                <div class="portfolio-info">
+                    <h4>Cartões de Visita</h4>
+                    <p>Acabamento e laminação</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-img-placeholder"><i class="fa-solid fa-shirt fa-2x"></i><br><br>[Imagem: T-shirts / Fardamento]</div>
+                <div class="portfolio-info">
+                    <h4>Fardamento Corporativo</h4>
+                    <p>Bordado em Alta Definição & Estampagem</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-img-placeholder"><i class="fa-solid fa-scroll fa-2x"></i><br><br>[Imagem: Banner Grande Formato]</div>
+                <div class="portfolio-info">
+                    <h4>Banner Publicitário</h4>
+                    <p>Impressão em Lona Brilhante para Fachada</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NOVA SECÇÃO: CONTACTOS (Inserida na parte inferior) -->
+    <section style="background-color: #fff; padding: 60px 0; border-top: 1px solid #eee; text-align: center;">
+        <div class="container">
+            <h2 style="font-size: 28px; margin-bottom: 30px; color: #222; position: relative; display: inline-block;">Contactos</h2>
+            
+            <div style="margin-bottom: 25px; font-size: 18px; color: #444;">
+                <p style="margin: 10px 0;">
+                    <i class="fas fa-phone-alt" style="color: #0056b3; margin-right: 10px;"></i>
+                    <strong>(+258) 86 587 6836</strong>
+                </p>
+                <p style="margin: 10px 0;">
+                    <i class="fas fa-envelope" style="color: #0056b3; margin-right: 10px;"></i>
+                    gdservices.mz@gmail.com
+                </p>
+                <p style="margin: 10px 0;">
+                    <i class="fas fa-map-marker-alt" style="color: #0056b3; margin-right: 10px;"></i>
+                    Maputo – Mozambique
+                </p>
+            </div>
+
+            <hr style="width: 100px; margin: 30px auto; border: 0; border-top: 1px solid #ccc;">
+
+            <h3 style="font-size: 20px; margin-bottom: 15px; color: #333;">Siga-nos</h3>
+            <div style="font-size: 18px;">
+                <a href="https://www.facebook.com/search/top?q=graphic%20dimension" target="_blank" style="color: #3b5998; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; transition: opacity 0.2s;">
+                    <i class="fab fa-facebook-f" style="background: #3b5998; color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px;"></i>
+                    Facebook
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Graphic Dimension. Todos os direitos reservados.</p>
+            <p>Transformando ideias em impressões de alto impacto.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Função para alternar entre as abas e rolar suavemente até o conteúdo de baixo do banner
+       function switchTab(tabId) {
+            var contents = document.querySelectorAll('.tab-content');
+            contents.forEach(function(content) {
+                content.classList.remove('active-tab');
+            });
+
+            // Limpa o estado ativo de todos os botões do menu, incluindo o Portfólio
+            document.getElementById('link-inicio').classList.remove('active');
+            document.getElementById('link-servicos').classList.remove('active');
+            document.getElementById('link-sobre').classList.remove('active'); 
+            document.getElementById('link-portfolio').classList.remove('active');
+            document.getElementById('link-find-my-job').classList.remove('active');
+
+            // Ativa a aba atual verificando se ela existe
+            var abaDestino = document.getElementById('tab-' + tabId);
+            if (abaDestino) {
+                abaDestino.classList.add('active-tab');
+            }
+
+            // Controla qual link fica destacado a azul no menu
+            if (tabId === 'find-my-job') {
+                document.getElementById('link-find-my-job').classList.add('active');
+            } else {
+                document.getElementById('link-' + tabId).classList.add('active');
+            }
+
+            document.getElementById('conteudo-principal').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.getElementById('link-inicio').classList.add('active');
+
+        // Form para envio estruturado ao WhatsApp (Find My Job)
+        document.getElementById('form-pedido-whatsapp').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            var nome = document.getElementById('nome').value;
+            var servico = document.getElementById('servico-select').value;
+            var tipo = document.getElementById('tipo-pedido').value;
+            var notas = document.getElementById('notas').value || "Nenhuma instrução adicional.";
+            
+            var textoMensagem = "Olá, Graphic Dimension! Gostaria de fazer um pedido através do site:\n\n" +
+                                "*Nome:* " + nome + "\n" +
+                                "*Serviço:* " + servico + "\n" +
+                                "*Tipo:* " + tipo + "\n" +
+                                "*Instruções:* " + notas;
+            
+            var textoCodificado = encodeURIComponent(textoMensagem);
+            var numeroWhats = "258865876836";
+            var linkWhatsApp = "https://wa.me/" + numeroWhats + "?text=" + textoCodificado;
+            
+            window.open(linkWhatsApp, '_blank');
+        });
+
+        // Função para enviar pedido de orçamento de serviços gráficos específicos
+        function enviarOrcamento(nomeServico) {
+            var mensagem = "Olá, Graphic Dimension! Estive no vosso site e gostaria de solicitar um orçamento para o serviço de *" + nomeServico + "*.";
+            var mensagemCodificada = encodeURIComponent(mensagem);
+            var numeroWhats = "258865876836";
+            var linkWhatsApp = "https://wa.me/" + numeroWhats + "?text=" + mensagemCodificada;
+            
+            window.open(linkWhatsApp, '_blank');
+        }
+    </script>
+</body>
+</html>
