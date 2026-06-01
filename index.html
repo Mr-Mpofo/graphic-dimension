@@ -722,5 +722,60 @@
             window.open(linkWhatsApp, '_blank');
         }
     </script>
+    <!-- ASSISTENTE DE ATENDIMENTO -->
+<div id="chat-assistant" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+
+    <!-- Botão Flutuante WhatsApp -->
+    <div onclick="toggleChat()" style="background-color: #25D366; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); cursor: pointer; transition: all 0.3s;">
+        <i class="fab fa-whatsapp" style="font-size: 35px; color: white;"></i>
+    </div>
+
+    <!-- Janela de Chat -->
+    <div id="chat-window" style="display: none; position: absolute; bottom: 80px; right: 0; width: 320px; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow: hidden;">
+        
+        <!-- Cabeçalho do Chat -->
+        <div style="background: #0066cc; color: white; padding: 15px; display: flex; align-items: center; gap: 10px;">
+            <i class="fab fa-whatsapp" style="font-size: 24px;"></i>
+            <div>
+                <strong>MP Express - Assistente</strong><br>
+                <small>Online • Resposta rápida</small>
+            </div>
+        </div>
+
+        <!-- Corpo do Chat -->
+        <div style="padding: 15px; height: 280px; overflow-y: auto; background: #f0f0f0;">
+            <div style="background: white; padding: 12px; border-radius: 10px; margin-bottom: 10px; max-width: 85%;">
+                Olá! 👋<br>
+                Bem-vindo à <strong>Graphic Dimension</strong>.<br><br>
+                Como posso ajudar você hoje?
+            </div>
+        </div>
+
+        <!-- Rodapé do Chat -->
+        <div style="padding: 12px; background: white; border-top: 1px solid #ddd;">
+            <a href="https://wa.me/258865876836?text=Olá%20Graphic%20Dimension,%20gostaria%20de%20informações." 
+               target="_blank"
+               style="display: block; background: #25D366; color: white; text-align: center; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold;">
+                Falar no WhatsApp
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleChat() {
+        const chatWindow = document.getElementById('chat-window');
+        chatWindow.style.display = chatWindow.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Fechar chat ao clicar fora
+    document.addEventListener('click', function(event) {
+        const chatContainer = document.getElementById('chat-assistant');
+        const chatWindow = document.getElementById('chat-window');
+        if (!chatContainer.contains(event.target)) {
+            chatWindow.style.display = 'none';
+        }
+    });
+</script>
 </body>
 </html>
