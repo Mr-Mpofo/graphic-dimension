@@ -338,32 +338,6 @@
         footer .social-links a:hover {
             color: #3b5998;
         }
-        /* Adicione estas regras ao seu bloco de <style> existente */
-
-/* Substitua o bloco 'header' antigo por este: */
-header {
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: fixed; /* Fixa o topo */
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    transition: all 0.3s ease; /* Animação suave */
-    height: 90px; /* Altura original */
-    display: flex;
-    align-items: center;
-    will-change: height; /* Melhora a performance da animação */
-}
-
-/* Este continua igual, apenas ajusta a altura */
-header.compact {
-    height: 60px; /* Altura reduzida */
-    padding: 0;
-}
-
-header.compact img {
-    height: 40px !important; /* Mantém o logo proporcional */
-}
 
         /* Responsividade */
         @media (max-width: 768px) {
@@ -881,17 +855,5 @@ header.compact img {
         }
     });
 </script>
-
-<script>
-    window.addEventListener('scroll', function() {
-        var header = document.querySelector('header');
-        if (window.scrollY > 50) {
-            header.classList.add('compact');
-        } else {
-            header.classList.remove('compact');
-        }
-    });
-</script>
-
 </body>
 </html>
