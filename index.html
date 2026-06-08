@@ -338,6 +338,21 @@
         footer .social-links a:hover {
             color: #3b5998;
         }
+        /* Adicione estas regras ao seu bloco de <style> existente */
+
+header {
+    transition: all 0.3s ease; 
+    padding: 20px 0;
+}
+
+header.compact {
+    padding: 5px 0; 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+header.compact img {
+    height: 40px !important; 
+}
 
         /* Responsividade */
         @media (max-width: 768px) {
@@ -855,5 +870,17 @@
         }
     });
 </script>
+
+<script>
+    window.addEventListener('scroll', function() {
+        var header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.classList.add('compact');
+        } else {
+            header.classList.remove('compact');
+        }
+    });
+</script>
+
 </body>
 </html>
